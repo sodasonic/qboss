@@ -18,14 +18,21 @@
         </ons-toolbar>
 
         <ons-card>
-            <div class="title">
-              Current Queue
-            </div>
-            <div class="content">
-              <h1>001</h1>
-            </div>
-          </ons-card>
+          <div class="title">Current Queue</div>
+          <div class="content">
+            <h1>001</h1>
+          </div>
+        </ons-card>
       </ons-page>
     </template>
+    <script>
+      document.addEventListener("init", function (event) {
+        var page = event.target;
+
+        if (page.id === "page1") {
+          
+        }
+      });
+    </script>
   </body>
 </html>
