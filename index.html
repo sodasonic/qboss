@@ -7,6 +7,31 @@
       href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
     />
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyD2nDoiUREDz4u9z9vcZj43klXX65WSUT0",
+        authDomain: "qboss-1d625.firebaseapp.com",
+        databaseURL: "https://qboss-1d625.firebaseio.com",
+        projectId: "qboss-1d625",
+        storageBucket: "qboss-1d625.appspot.com",
+        messagingSenderId: "438708359452",
+        appId: "1:438708359452:web:b3f4b49a000b7dc11f2ad9",
+        measurementId: "G-TRJ7NQ31M6",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      var db = firebase.firestore();
+    </script>
   </head>
   <body>
     <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
@@ -20,7 +45,7 @@
         <ons-card>
           <div class="title">Current Queue</div>
           <div class="content">
-            <h1>001</h1>
+            <h1 id="queue">001</h1>
           </div>
         </ons-card>
       </ons-page>
@@ -30,7 +55,22 @@
         var page = event.target;
 
         if (page.id === "page1") {
-          
+          var docRef = db.collection("queue").doc("room1");
+          docRef
+            .get()
+            .then(function (doc) {
+              if (doc.exists) {
+                console.log("Document data:", doc.data());
+                document.getElementById("queue").innerHTML = `${doc.data().current}/${doc.data().total}`;  
+
+              } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+              }
+            })
+            .catch(function (error) {
+              console.log("Error getting document:", error);
+            });
         }
       });
     </script>
