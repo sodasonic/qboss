@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
+    />
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  </head>
+  <body>
+    <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+    <template id="page1.html">
+      <ons-page id="page1">
+        <ons-toolbar>
+          <div class="center">QBoss</div>
+        </ons-toolbar>
+
+        <ons-card>
+            <div class="title">
+              Current Queue
+            </div>
+            <div class="content">
+              <h1>001</h1>
+            </div>
+          </ons-card>
+      </ons-page>
+    </template>
+  </body>
+</html>
