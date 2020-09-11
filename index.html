@@ -61,8 +61,9 @@
             .then(function (doc) {
               if (doc.exists) {
                 console.log("Document data:", doc.data());
-                document.getElementById("queue").innerHTML = `${doc.data().current}/${doc.data().total}`;  
-
+                document.getElementById("queue").innerHTML = `${
+                  doc.data().current
+                }/${doc.data().total}`;
               } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -70,6 +71,14 @@
             })
             .catch(function (error) {
               console.log("Error getting document:", error);
+            });
+
+          db.collection("queue")
+            .doc("room1")
+            .onSnapshot(function (doc) {
+              document.getElementById("queue").innerHTML = `${
+                doc.data().current
+              }/${doc.data().total}`;
             });
         }
       });
